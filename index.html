@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANNE - Your Personal Assistant</title>
+  <meta name="description" content="ANNE is a personal AI assistant designed for adults 65+ who want help managing their lives without being overwhelmed by technology.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <img
+      src="/brand_assets/Anne hero image v2.png"
+      alt="Anne, a friendly assistant at her desk with a typewriter"
+      class="hero-image"
+    >
+    <div class="hero-overlay hero-overlay-top">
+      <div class="hero-brand">ANNE</div>
+      <p class="hero-tagline">Who says assistants are only for working people?</p>
+    </div>
+    <div class="hero-overlay hero-overlay-center">
+      <p class="hero-description">Anne watches your accounts, screens your calls and emails, and handles the small stuff—so you don't have to.</p>
+    </div>
+    <div class="hero-content">
+      <p class="hero-subtitle">Anne helps you stay on top of finances, health, and daily life &mdash; through weekly printed memos and simple phone calls.</p>
+
+      <div class="hooks-cards">
+        <div class="hook-card">
+          <span class="hook-icon">🛡️</span>
+          <p class="hook-text">Spots suspicious payments before you lose money</p>
+        </div>
+        <div class="hook-card">
+          <span class="hook-icon">💰</span>
+          <p class="hook-text">Catches when subscriptions quietly raise their prices</p>
+        </div>
+        <div class="hook-card">
+          <span class="hook-icon">📅</span>
+          <p class="hook-text">Confirms appointments so you never miss one</p>
+        </div>
+      </div>
+
+      <a href="#waitlist" class="cta-button">Join the Waitlist</a>
+    </div>
+  </section>
+
+  <!-- Weekly Summary Section -->
+  <section class="weekly-summary" id="summary">
+    <div class="container">
+      <h2>Every Monday, Anne Prints Your Week</h2>
+      <p class="section-intro">A clear summary sent to your printer, with Anne on standby ready to implement your decisions.</p>
+
+      <div class="summary-display">
+        <div class="printer-visual">
+          <video
+            class="printer-video"
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-label="A cozy home printer printing pages"
+          >
+            <source src="/brand_assets/cozy-printer-portrait.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="summary-pages">
+          <!-- Page 1 -->
+          <div class="summary-page" id="page1">
+            <div class="page-content">
+              <h3 class="greeting">Happy Monday, Judy!</h3>
+              <p class="week-dates">Week of Jan 20 - 27, 2026</p>
+
+              <div class="success-section">
+                <h4>Success last week 🎉</h4>
+                <ul class="success-list">
+                  <li><span class="checkbox checked"></span> 3 gym sessions 💪</li>
+                  <li><span class="checkbox checked"></span> 2 friend meet-ups 👯</li>
+                  <li><span class="checkbox checked"></span> 3 financial advisor meetings 💰</li>
+                  <li><span class="checkbox checked"></span> 10,212 steps walked! 👣</li>
+                </ul>
+              </div>
+
+              <div class="goals-section">
+                <h4>Your goals this week:</h4>
+                <ul class="goals-list">
+                  <li>3 gym sessions</li>
+                  <li>Plan New Zealand trip</li>
+                  <li>Share financial advisor plan with Loren & Kevin</li>
+                </ul>
+              </div>
+
+              <div class="decisions-section">
+                <h4>Decisions needed</h4>
+                <table class="decisions-table">
+                  <colgroup>
+                    <col style="width: 15%;">
+                    <col style="width: 50%;">
+                    <col style="width: 35%;">
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Topic</th>
+                      <th>Description</th>
+                      <th>Decision</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Finances</td>
+                      <td>Netflix increased prices from $15.99 to $24.99 per month. They alternatively have a $9.99 plan that would show ads while watching. Do you want to keep, switch plans, or cancel altogether?</td>
+                      <td class="decision-options">
+                        <span class="option"><span class="checkbox"></span> Keep</span>
+                        <span class="option"><span class="checkbox"></span> Switch</span>
+                        <span class="option"><span class="checkbox"></span> Cancel</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="page-number">1</div>
+          </div>
+
+          <!-- Page 2 -->
+          <div class="summary-page" id="page2">
+            <div class="page-content">
+              <table class="decisions-table continued">
+                <colgroup>
+                  <col style="width: 15%;">
+                  <col style="width: 50%;">
+                  <col style="width: 35%;">
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <td>Finances</td>
+                    <td>Suspicious Zelle payment: Your $100 payment to BRAD_PITT944 looks suspicious and that recipient has been associated with a fraud ring. Shall I report and try to get your money back?</td>
+                    <td class="decision-options">
+                      <span class="option"><span class="checkbox"></span> Looks ok</span>
+                      <span class="option"><span class="checkbox"></span> Report</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Medical</td>
+                    <td>Dr. Mather's office called and wanted to confirm your Thursday optometry appointment at 9:00am. Shall I confirm?</td>
+                    <td class="decision-options">
+                      <span class="option"><span class="checkbox"></span> Yes, confirm</span>
+                      <span class="option"><span class="checkbox"></span> No, cancel</span>
+                      <span class="option"><span class="checkbox"></span> No, reschedule</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="call-anne-box">
+                <p><strong>Call Anne at 1-888-666-ANNE</strong></p>
+                <p>with decisions, requests, or changes</p>
+              </div>
+            </div>
+            <div class="page-number">2</div>
+          </div>
+
+          <!-- Page 3 -->
+          <div class="summary-page" id="page3">
+            <div class="page-content">
+              <p class="week-dates-small">Judy's week of Jan 20 - 27, 2026</p>
+
+              <div class="todo-section">
+                <h4>Judy's to do</h4>
+                <ul class="todo-list">
+                  <li><span class="checkbox"></span> Call Anne to describe financial advisor meetings</li>
+                  <li><span class="checkbox"></span> Call Anne to brainstorm New Zealand trip</li>
+                  <li><span class="checkbox"></span> Plan dinner menu for Rick on Friday</li>
+                  <li><span class="checkbox"></span> Return library books</li>
+                </ul>
+              </div>
+
+              <div class="handled-section">
+                <h4>Being handled for you (FYI)</h4>
+                <ul class="handled-list">
+                  <li>Anne writes and shares financial advisor meeting summaries and draft recommendations with Judy after Judy calls</li>
+                  <li>Anne drafts outline of New Zealand trip options after Judy calls</li>
+                  <li>Anne pays gardener Tom when Judy confirms work</li>
+                  <li>Anne makes reservation for dinner with Helen</li>
+                  <li>Anne reviews State Farm insurance bill and pays if it looks normal</li>
+                  <li>Loren talks to Carlos about fountain construction</li>
+                </ul>
+              </div>
+            </div>
+            <div class="page-number">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-cta">
+        <p>Ready to have Anne manage your week?</p>
+        <a href="tel:1-888-666-2663" class="phone-link">Call or text: 1-888-666-ANNE</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audio Demo Section -->
+  <section class="audio-demo" id="demo">
+    <div class="container">
+      <div class="audio-demo-grid">
+        <div class="audio-demo-visual">
+          <video
+            class="phone-video"
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-label="A woman chatting on the phone with coffee"
+          >
+            <source src="/brand_assets/woman on phone with anne and coffee.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="audio-demo-content">
+          <h2>Hear Anne in Action</h2>
+          <p class="audio-description">Listen to how Anne helps Judy plan her week</p>
+
+          <div class="audio-player">
+            <button class="play-button" id="playButton" aria-label="Play audio demo">
+              <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true" style="display: none;">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+              </svg>
+            </button>
+            <div class="audio-progress-container">
+              <div class="audio-progress" id="audioProgress">
+                <div class="audio-progress-bar" id="audioProgressBar"></div>
+              </div>
+              <div class="audio-time">
+                <span id="currentTime">0:00</span>
+                <span id="duration">0:00</span>
+              </div>
+            </div>
+          </div>
+          <audio id="audioElement" preload="metadata">
+            <source src="/brand_assets/Judy - Anne convo Feb 3 2026.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist Section -->
+  <section class="waitlist" id="waitlist">
+    <div class="container">
+      <h2>Get Anne When She's Ready</h2>
+      <p class="waitlist-intro">Anne is learning how to deal with Netflix, Zelle, and your health insurance. Leave your email—we'll let you know when she's ready.</p>
+
+      <form class="waitlist-form" id="waitlistForm" action="https://formspree.io/f/placeholder" method="POST">
+        <div class="form-group">
+          <label for="email">Your email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="you@example.com"
+            autocomplete="email"
+          >
+        </div>
+
+        <button type="submit" class="cta-button">Join the Waitlist</button>
+
+        <p class="form-note">No spam, ever. Just updates about Anne.</p>
+      </form>
+
+      <div class="form-success" id="formSuccess" style="display: none;">
+        <h3>You're on the list!</h3>
+        <p class="success-message">We'll be in touch soon. Thank you for your interest in Anne.</p>
+
+        <div class="followup-question" id="followupQuestion">
+          <p class="followup-text">Would you be willing to chat with our team about how Anne can be most useful to you?</p>
+          <div class="followup-options">
+            <label class="followup-option">
+              <input type="radio" name="willing_to_chat" value="yes">
+              <span>Yes</span>
+            </label>
+            <label class="followup-option">
+              <input type="radio" name="willing_to_chat" value="no">
+              <span>No</span>
+            </label>
+          </div>
+          <button type="button" class="cta-button secondary" id="followupSubmit">Submit</button>
+        </div>
+
+        <p class="followup-thanks" id="followupThanks" style="display: none;">Thanks for letting us know!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">ANNE</div>
+      <p class="footer-tagline">Your personal assistant for the life you've built.</p>
+      <p class="footer-contact">Questions? Call <a href="tel:1-888-666-2663">1-888-666-ANNE</a></p>
+    </div>
+  </footer>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
