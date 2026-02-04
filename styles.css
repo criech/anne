@@ -266,6 +266,14 @@ img {
     padding: var(--space-sm) var(--space-md);
   }
 
+  .hero-overlay-center {
+    position: relative;
+    top: auto;
+    max-width: 100%;
+    background: var(--pink-light);
+    padding: var(--space-md);
+  }
+
   .hero-brand {
     font-size: 1.75rem;
   }
@@ -276,8 +284,8 @@ img {
   }
 
   .hero-description {
-    font-size: 1rem;
-    max-width: 260px;
+    font-size: 1.1rem;
+    max-width: 100%;
   }
 }
 
@@ -535,6 +543,10 @@ img {
 
 .success-section h4,
 .goals-section h4,
+.decisions-section {
+  overflow-x: auto;
+}
+
 .decisions-section h4,
 .todo-section h4,
 .handled-section h4 {
@@ -1066,13 +1078,38 @@ img {
     padding: var(--space-md);
   }
 
+  /* Mobile-friendly decisions table */
   .decisions-table {
     font-size: 0.85rem;
+    table-layout: auto;
+  }
+
+  .decisions-table colgroup {
+    display: none;
   }
 
   .decisions-table th,
   .decisions-table td {
     padding: var(--space-xs);
+    word-wrap: break-word;
+  }
+
+  .decisions-table td:nth-child(1) {
+    width: 60px;
+    min-width: 60px;
+  }
+
+  .decisions-table td:nth-child(2) {
+    min-width: 0;
+  }
+
+  .decisions-table td:nth-child(3) {
+    width: 80px;
+    min-width: 80px;
+  }
+
+  .option {
+    font-size: 0.8rem;
   }
 
   .printer-visual {

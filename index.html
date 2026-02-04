@@ -13,11 +13,16 @@
 <body>
   <!-- Hero Section -->
   <section class="hero" id="hero">
-    <img
-      src="./brand_assets/Anne hero image v2.png"
-      alt="Anne, a friendly assistant at her desk with a typewriter"
-      class="hero-image"
-    >
+    <picture>
+      <source media="(max-width: 768px)" srcset="./brand_assets/hero-mobile.jpg">
+      <source media="(min-width: 769px)" srcset="./brand_assets/hero-desktop.jpg">
+      <img
+        src="./brand_assets/hero-desktop.jpg"
+        alt="Anne, a friendly assistant at her desk with a typewriter"
+        class="hero-image"
+        loading="eager"
+      >
+    </picture>
     <div class="hero-overlay hero-overlay-top">
       <div class="hero-brand">ANNE</div>
       <p class="hero-tagline">Who says assistants are only for working people?</p>
@@ -30,15 +35,15 @@
 
       <div class="hooks-cards">
         <div class="hook-card">
-          <img src="./brand_assets/shield gemini.png" alt="" class="hook-icon">
+          <img src="./brand_assets/shield-optimized.png" alt="" class="hook-icon">
           <p class="hook-text">Spots suspicious payments before you lose money</p>
         </div>
         <div class="hook-card">
-          <img src="./brand_assets/money bag gemini.png" alt="" class="hook-icon">
+          <img src="./brand_assets/moneybag-optimized.png" alt="" class="hook-icon">
           <p class="hook-text">Catches when subscriptions quietly raise their prices</p>
         </div>
         <div class="hook-card">
-          <img src="./brand_assets/calendar gemini.png" alt="" class="hook-icon">
+          <img src="./brand_assets/calendar-optimized.png" alt="" class="hook-icon">
           <p class="hook-text">Confirms appointments so you never miss one</p>
         </div>
       </div>
