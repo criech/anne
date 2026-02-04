@@ -30,15 +30,15 @@
 
       <div class="hooks-cards">
         <div class="hook-card">
-          <span class="hook-icon">🛡️</span>
+          <img src="/brand_assets/shield gemini.png" alt="" class="hook-icon">
           <p class="hook-text">Spots suspicious payments before you lose money</p>
         </div>
         <div class="hook-card">
-          <span class="hook-icon">💰</span>
+          <img src="/brand_assets/money bag gemini.png" alt="" class="hook-icon">
           <p class="hook-text">Catches when subscriptions quietly raise their prices</p>
         </div>
         <div class="hook-card">
-          <span class="hook-icon">📅</span>
+          <img src="/brand_assets/calendar gemini.png" alt="" class="hook-icon">
           <p class="hook-text">Confirms appointments so you never miss one</p>
         </div>
       </div>
@@ -112,10 +112,10 @@
                     <tr>
                       <td>Finances</td>
                       <td>Netflix increased prices from $15.99 to $24.99 per month. They alternatively have a $9.99 plan that would show ads while watching. Do you want to keep, switch plans, or cancel altogether?</td>
-                      <td class="decision-options">
-                        <span class="option"><span class="checkbox"></span> Keep</span>
-                        <span class="option"><span class="checkbox"></span> Switch</span>
-                        <span class="option"><span class="checkbox"></span> Cancel</span>
+                      <td class="decision-options" data-decision-group="netflix">
+                        <label class="option"><input type="checkbox" class="decision-checkbox"> Keep</label>
+                        <label class="option"><input type="checkbox" class="decision-checkbox"> Switch</label>
+                        <label class="option"><input type="checkbox" class="decision-checkbox"> Cancel</label>
                       </td>
                     </tr>
                   </tbody>
@@ -138,18 +138,18 @@
                   <tr>
                     <td>Finances</td>
                     <td>Suspicious Zelle payment: Your $100 payment to BRAD_PITT944 looks suspicious and that recipient has been associated with a fraud ring. Shall I report and try to get your money back?</td>
-                    <td class="decision-options">
-                      <span class="option"><span class="checkbox"></span> Looks ok</span>
-                      <span class="option"><span class="checkbox"></span> Report</span>
+                    <td class="decision-options" data-decision-group="zelle">
+                      <label class="option"><input type="checkbox" class="decision-checkbox"> Looks ok</label>
+                      <label class="option"><input type="checkbox" class="decision-checkbox"> Report</label>
                     </td>
                   </tr>
                   <tr>
                     <td>Medical</td>
                     <td>Dr. Mather's office called and wanted to confirm your Thursday optometry appointment at 9:00am. Shall I confirm?</td>
-                    <td class="decision-options">
-                      <span class="option"><span class="checkbox"></span> Yes, confirm</span>
-                      <span class="option"><span class="checkbox"></span> No, cancel</span>
-                      <span class="option"><span class="checkbox"></span> No, reschedule</span>
+                    <td class="decision-options" data-decision-group="medical">
+                      <label class="option"><input type="checkbox" class="decision-checkbox"> Yes, confirm</label>
+                      <label class="option"><input type="checkbox" class="decision-checkbox"> No, cancel</label>
+                      <label class="option"><input type="checkbox" class="decision-checkbox"> No, reschedule</label>
                     </td>
                   </tr>
                 </tbody>
@@ -171,10 +171,10 @@
               <div class="todo-section">
                 <h4>Judy's to do</h4>
                 <ul class="todo-list">
-                  <li><span class="checkbox"></span> Call Anne to describe financial advisor meetings</li>
-                  <li><span class="checkbox"></span> Call Anne to brainstorm New Zealand trip</li>
-                  <li><span class="checkbox"></span> Plan dinner menu for Rick on Friday</li>
-                  <li><span class="checkbox"></span> Return library books</li>
+                  <li><label><input type="checkbox" class="todo-checkbox"> Call Anne to describe financial advisor meetings</label></li>
+                  <li><label><input type="checkbox" class="todo-checkbox"> Call Anne to brainstorm New Zealand trip</label></li>
+                  <li><label><input type="checkbox" class="todo-checkbox"> Plan dinner menu for Rick on Friday</label></li>
+                  <li><label><input type="checkbox" class="todo-checkbox"> Return library books</label></li>
                 </ul>
               </div>
 
@@ -271,8 +271,21 @@
 
         <button type="submit" class="cta-button">Join the Waitlist</button>
 
-        <p class="form-note">No spam, ever. Just updates about Anne.</p>
+        <p class="form-note">Your information stays private. No sharing, no selling—just updates about Anne.</p>
       </form>
+
+      <div class="quick-feedback" id="quickFeedback">
+        <p class="quick-feedback-header">Not ready to sign up? We'd still love your input.</p>
+        <label for="quickHelpWith" class="quick-feedback-label">What would you most want Anne to help with?</label>
+        <textarea
+          id="quickHelpWith"
+          name="quick_help_with"
+          rows="2"
+          placeholder="e.g., Managing bills, screening calls, keeping track of appointments..."
+        ></textarea>
+        <button type="button" class="cta-button secondary" id="quickFeedbackSubmit">Share Feedback</button>
+        <p class="quick-feedback-thanks" id="quickFeedbackThanks" style="display: none;">Thank you for sharing!</p>
+      </div>
 
       <div class="form-success" id="formSuccess" style="display: none;">
         <h3>You're on the list!</h3>
@@ -290,6 +303,17 @@
               <span>No</span>
             </label>
           </div>
+
+          <div class="followup-textarea-group">
+            <label for="helpWith" class="followup-text">What would you most want Anne to help with?</label>
+            <textarea
+              id="helpWith"
+              name="help_with"
+              rows="3"
+              placeholder="e.g., Managing bills, screening calls, keeping track of appointments..."
+            ></textarea>
+          </div>
+
           <button type="button" class="cta-button secondary" id="followupSubmit">Submit</button>
         </div>
 

@@ -159,12 +159,15 @@ if (waitlistForm) {
 if (followupSubmit) {
   followupSubmit.addEventListener('click', async () => {
     const selectedOption = document.querySelector('input[name="willing_to_chat"]:checked');
+    const helpWithTextarea = document.getElementById('helpWith');
 
-    if (!selectedOption) {
-      return; // No option selected, do nothing
+    const willingToChat = selectedOption ? selectedOption.value : null;
+    const helpWith = helpWithTextarea ? helpWithTextarea.value.trim() : '';
+
+    // Require at least one response
+    if (!willingToChat && !helpWith) {
+      return;
     }
-
-    const willingToChat = selectedOption.value;
 
     followupSubmit.disabled = true;
     followupSubmit.textContent = 'Submitting...';
@@ -177,7 +180,8 @@ if (followupSubmit) {
         method: 'POST',
         body: JSON.stringify({
           email: submittedEmail,
-          willing_to_chat: willingToChat
+          willing_to_chat: willingToChat,
+          help_with: helpWith
         }),
         headers: {
           'Accept': 'application/json',
@@ -188,7 +192,7 @@ if (followupSubmit) {
       if (!response.ok) throw new Error('Follow-up submission failed');
       */
 
-      console.log('Follow-up response:', { email: submittedEmail, willing_to_chat: willingToChat });
+      console.log('Follow-up response:', { email: submittedEmail, willing_to_chat: willingToChat, help_with: helpWith });
 
       // Simulate network delay
       await new Promise(resolve => setTimeout(resolve, 500));
@@ -212,6 +216,62 @@ if (followupSubmit) {
   });
 }
 
+// Quick Feedback submission (for users not ready to sign up)
+const quickFeedbackSubmit = document.getElementById('quickFeedbackSubmit');
+const quickFeedback = document.getElementById('quickFeedback');
+const quickFeedbackThanks = document.getElementById('quickFeedbackThanks');
+
+if (quickFeedbackSubmit) {
+  quickFeedbackSubmit.addEventListener('click', async () => {
+    const textarea = document.getElementById('quickHelpWith');
+    const feedbackText = textarea ? textarea.value.trim() : '';
+
+    if (!feedbackText) {
+      return; // No feedback entered
+    }
+
+    quickFeedbackSubmit.disabled = true;
+    quickFeedbackSubmit.textContent = 'Sending...';
+
+    try {
+      // For now, just simulate success
+      // In production, send this data to your backend
+      /*
+      const response = await fetch('https://formspree.io/f/placeholder', {
+        method: 'POST',
+        body: JSON.stringify({
+          quick_feedback: feedbackText
+        }),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) throw new Error('Feedback submission failed');
+      */
+
+      console.log('Quick feedback:', { quick_feedback: feedbackText });
+
+      // Simulate network delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Hide textarea and button, show thanks
+      textarea.style.display = 'none';
+      quickFeedbackSubmit.style.display = 'none';
+      document.querySelector('.quick-feedback-label').style.display = 'none';
+      if (quickFeedbackThanks) {
+        quickFeedbackThanks.style.display = 'block';
+      }
+
+    } catch (error) {
+      console.error('Quick feedback error:', error);
+      quickFeedbackSubmit.disabled = false;
+      quickFeedbackSubmit.textContent = 'Share Feedback';
+    }
+  });
+}
+
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
@@ -230,6 +290,24 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       target.setAttribute('tabindex', '-1');
       target.focus({ preventScroll: true });
     }
+  });
+});
+
+// Decision checkboxes - radio-like behavior (only one per row, can uncheck)
+document.querySelectorAll('.decision-options').forEach(optionsCell => {
+  const checkboxes = optionsCell.querySelectorAll('.decision-checkbox');
+
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        // Uncheck all other checkboxes in this group
+        checkboxes.forEach(cb => {
+          if (cb !== e.target) {
+            cb.checked = false;
+          }
+        });
+      }
+    });
   });
 });
 
