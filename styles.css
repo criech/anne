@@ -267,11 +267,7 @@ img {
   }
 
   .hero-overlay-center {
-    position: relative;
-    top: auto;
-    max-width: 100%;
-    background: var(--pink-light);
-    padding: var(--space-md);
+    display: none;
   }
 
   .hero-brand {
@@ -281,11 +277,6 @@ img {
   .hero-tagline {
     font-size: 1rem;
     max-width: 240px;
-  }
-
-  .hero-description {
-    font-size: 1.1rem;
-    max-width: 100%;
   }
 }
 
@@ -1078,38 +1069,60 @@ img {
     padding: var(--space-md);
   }
 
-  /* Mobile-friendly decisions table */
+  /* Mobile-friendly decisions table - stack vertically */
   .decisions-table {
-    font-size: 0.85rem;
-    table-layout: auto;
+    font-size: 0.9rem;
+  }
+
+  .decisions-table,
+  .decisions-table thead,
+  .decisions-table tbody,
+  .decisions-table tr,
+  .decisions-table th,
+  .decisions-table td {
+    display: block;
+    width: 100%;
   }
 
   .decisions-table colgroup {
     display: none;
   }
 
-  .decisions-table th,
+  .decisions-table thead {
+    display: none;
+  }
+
+  .decisions-table tr {
+    margin-bottom: var(--space-md);
+    border: 1px solid var(--pink-medium);
+    border-radius: var(--border-radius);
+    padding: var(--space-sm);
+  }
+
   .decisions-table td {
-    padding: var(--space-xs);
-    word-wrap: break-word;
+    border: none;
+    padding: var(--space-xs) 0;
+    text-align: left;
   }
 
   .decisions-table td:nth-child(1) {
-    width: 60px;
-    min-width: 60px;
+    font-weight: 600;
+    color: var(--teal-dark);
+    font-size: 1rem;
   }
 
   .decisions-table td:nth-child(2) {
-    min-width: 0;
+    padding-bottom: var(--space-sm);
   }
 
   .decisions-table td:nth-child(3) {
-    width: 80px;
-    min-width: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
   }
 
   .option {
-    font-size: 0.8rem;
+    margin-bottom: 0;
   }
 
   .printer-visual {
