@@ -163,6 +163,11 @@ if (waitlistForm) {
 
       // Show success message with follow-up question
       waitlistForm.style.display = 'none';
+      // Hide quick feedback section since they'll answer in the follow-up
+      const quickFeedbackSection = document.getElementById('quickFeedback');
+      if (quickFeedbackSection) {
+        quickFeedbackSection.style.display = 'none';
+      }
       if (formSuccess) {
         formSuccess.style.display = 'block';
       }
