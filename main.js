@@ -103,6 +103,40 @@ const followupThanks = document.getElementById('followupThanks');
 
 let submittedEmail = '';
 
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxUsxVnt24aWW5_kmk7upjhhNSWhNLhsm2eSqQQLXm9V8PbIe0lal31EkAEcuowTtxF/exec';
+
+// Helper function to submit data to Google Sheets
+function submitToGoogleSheets(data) {
+  // Create a form and submit it via iframe to avoid CORS issues
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = GOOGLE_SHEETS_URL;
+  form.target = 'hidden-iframe';
+
+  // Add data as hidden fields
+  for (const key in data) {
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = key;
+    input.value = data[key];
+    form.appendChild(input);
+  }
+
+  // Create hidden iframe if it doesn't exist
+  let iframe = document.getElementById('hidden-iframe');
+  if (!iframe) {
+    iframe = document.createElement('iframe');
+    iframe.name = 'hidden-iframe';
+    iframe.id = 'hidden-iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+  }
+
+  document.body.appendChild(form);
+  form.submit();
+  form.remove();
+}
+
 if (waitlistForm) {
   waitlistForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -120,22 +154,12 @@ if (waitlistForm) {
     }
 
     try {
-      // For now, just simulate success since we don't have a real endpoint
-      // In production, uncomment the fetch call below
-      /*
-      const response = await fetch(waitlistForm.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
+      submitToGoogleSheets({
+        email: submittedEmail,
+        willing_to_chat: '',
+        help_with: '',
+        form_type: 'waitlist_signup'
       });
-
-      if (!response.ok) throw new Error('Form submission failed');
-      */
-
-      // Simulate network delay
-      await new Promise(resolve => setTimeout(resolve, 800));
 
       // Show success message with follow-up question
       waitlistForm.style.display = 'none';
@@ -173,29 +197,12 @@ if (followupSubmit) {
     followupSubmit.textContent = 'Submitting...';
 
     try {
-      // For now, just simulate success
-      // In production, send this data to your backend alongside the email
-      /*
-      const response = await fetch('https://formspree.io/f/placeholder', {
-        method: 'POST',
-        body: JSON.stringify({
-          email: submittedEmail,
-          willing_to_chat: willingToChat,
-          help_with: helpWith
-        }),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
+      submitToGoogleSheets({
+        email: submittedEmail,
+        willing_to_chat: willingToChat || '',
+        help_with: helpWith,
+        form_type: 'followup'
       });
-
-      if (!response.ok) throw new Error('Follow-up submission failed');
-      */
-
-      console.log('Follow-up response:', { email: submittedEmail, willing_to_chat: willingToChat, help_with: helpWith });
-
-      // Simulate network delay
-      await new Promise(resolve => setTimeout(resolve, 500));
 
       // Hide the question, show appropriate thanks message
       if (followupQuestion) {
@@ -234,27 +241,12 @@ if (quickFeedbackSubmit) {
     quickFeedbackSubmit.textContent = 'Sending...';
 
     try {
-      // For now, just simulate success
-      // In production, send this data to your backend
-      /*
-      const response = await fetch('https://formspree.io/f/placeholder', {
-        method: 'POST',
-        body: JSON.stringify({
-          quick_feedback: feedbackText
-        }),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
+      submitToGoogleSheets({
+        email: '',
+        willing_to_chat: '',
+        help_with: feedbackText,
+        form_type: 'quick_feedback'
       });
-
-      if (!response.ok) throw new Error('Feedback submission failed');
-      */
-
-      console.log('Quick feedback:', { quick_feedback: feedbackText });
-
-      // Simulate network delay
-      await new Promise(resolve => setTimeout(resolve, 500));
 
       // Hide textarea and button, show thanks
       textarea.style.display = 'none';
