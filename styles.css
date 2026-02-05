@@ -319,6 +319,50 @@ img {
   color: var(--white);
 }
 
+/* Scroll Indicator */
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--space-xl);
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+}
+
+.scroll-indicator.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-text {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--teal-dark);
+  margin-bottom: var(--space-xs);
+}
+
+.scroll-arrow {
+  width: 32px;
+  height: 32px;
+  fill: var(--teal-dark);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-arrow {
+    animation: none;
+  }
+}
+
 /* ============================================
    AUDIO DEMO SECTION
    ============================================ */

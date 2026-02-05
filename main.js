@@ -308,6 +308,27 @@ document.querySelectorAll('.decision-options').forEach(optionsCell => {
   });
 });
 
+// Scroll Indicator - hide when user scrolls
+const scrollIndicator = document.getElementById('scrollIndicator');
+let hasScrolled = false;
+
+if (scrollIndicator) {
+  window.addEventListener('scroll', () => {
+    if (!hasScrolled && window.scrollY > 50) {
+      hasScrolled = true;
+      scrollIndicator.classList.add('hidden');
+    }
+  }, { passive: true });
+
+  // Also allow clicking the indicator to scroll down
+  scrollIndicator.addEventListener('click', () => {
+    const nextSection = document.getElementById('summary');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+}
+
 // Reduced motion check
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
