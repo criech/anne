@@ -308,14 +308,15 @@ document.querySelectorAll('.decision-options').forEach(optionsCell => {
   });
 });
 
-// Scroll Indicator - hide when user scrolls
+// Scroll Indicator - hide after user scrolls
 const scrollIndicator = document.getElementById('scrollIndicator');
-let hasScrolled = false;
 
 if (scrollIndicator) {
+  let initialScrollY = window.scrollY;
+
   window.addEventListener('scroll', () => {
-    if (!hasScrolled && window.scrollY > 50) {
-      hasScrolled = true;
+    // Only hide if user has scrolled down from initial position
+    if (window.scrollY > initialScrollY + 100) {
       scrollIndicator.classList.add('hidden');
     }
   }, { passive: true });
@@ -325,6 +326,7 @@ if (scrollIndicator) {
     const nextSection = document.getElementById('summary');
     if (nextSection) {
       nextSection.scrollIntoView({ behavior: 'smooth' });
+      scrollIndicator.classList.add('hidden');
     }
   });
 }
