@@ -351,6 +351,11 @@ img {
     display: block;
     margin-top: var(--space-xs);
   }
+
+  /* Hide scroll indicator on mobile - not needed */
+  .scroll-indicator {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
