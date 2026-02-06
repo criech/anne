@@ -709,13 +709,40 @@ img {
 
 .summary-page-landscape .page-content {
   min-height: auto;
-  padding: var(--space-md);
+  padding: var(--space-lg);
+}
+
+.calendar-section h4 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--teal-dark);
+  margin-bottom: var(--space-xs);
+  padding-bottom: var(--space-xs);
+  border-bottom: 2px solid var(--pink-medium);
+}
+
+.calendar-section .week-dates-small {
+  margin-bottom: var(--space-md);
+}
+
+.calendar-frame {
+  border: 3px solid var(--teal);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin-bottom: var(--space-md);
 }
 
 .calendar-image {
   width: 100%;
   height: auto;
-  border-radius: var(--border-radius);
+  display: block;
+}
+
+.calendar-note {
+  text-align: center;
+  font-style: italic;
+  color: var(--gray-medium);
+  margin: 0;
 }
 
 /* Page Content Styles */
