@@ -19,7 +19,7 @@ function getSessionId() {
 
 const sessionId = getSessionId();
 const MAX_SELECTIONS = 5;
-const MIN_SELECTIONS = 3;
+const MIN_SELECTIONS = 1; // Allow 1+, though we suggest 3-5
 
 // Card selection logic
 const hookCards = document.getElementById('hookCards');
@@ -53,8 +53,6 @@ function updateSelectionUI() {
   if (selectionCountEl) {
     if (count === 0) {
       selectionCountEl.textContent = '0 selected';
-    } else if (count < MIN_SELECTIONS) {
-      selectionCountEl.textContent = `${count} selected — pick at least ${MIN_SELECTIONS}`;
     } else {
       selectionCountEl.textContent = `${count} selected`;
     }
@@ -126,7 +124,7 @@ if (seeHowButton) {
     }
 
     // Update button to show it worked (but keep enabled for changes)
-    seeHowButton.textContent = 'See How Anne Helps ↓';
+    seeHowButton.textContent = 'Submitted ✓';
   });
 }
 

@@ -343,8 +343,17 @@ img {
     width: 100%;
   }
 
+  /* Sticky header for card selection on mobile */
   .selection-prompt {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    position: sticky;
+    top: 0;
+    background: var(--cream);
+    padding: var(--space-sm) var(--space-md);
+    margin: 0 calc(-1 * var(--space-md));
+    margin-bottom: var(--space-md);
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   .selection-hint {
@@ -355,6 +364,15 @@ img {
   /* Hide scroll indicator on mobile - not needed */
   .scroll-indicator {
     display: none;
+  }
+
+  /* Tighter mobile hero */
+  .hero-content {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .hero-subtitle {
+    margin-bottom: var(--space-lg);
   }
 }
 
