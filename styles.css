@@ -361,11 +361,6 @@ img {
     margin-top: var(--space-xs);
   }
 
-  /* Hide scroll indicator on mobile - not needed */
-  .scroll-indicator {
-    display: none;
-  }
-
   /* Tighter mobile hero */
   .hero-content {
     padding: var(--space-lg) var(--space-md);
@@ -1336,5 +1331,12 @@ img {
 
   .cta-button {
     border: 2px solid currentColor;
+  }
+}
+
+/* Hide scroll indicator on mobile - must come after main styles */
+@media (max-width: 768px) {
+  .scroll-indicator {
+    display: none !important;
   }
 }
