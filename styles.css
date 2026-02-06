@@ -702,6 +702,22 @@ img {
   color: var(--gray-light);
 }
 
+/* Landscape page for calendar */
+.summary-page-landscape {
+  max-width: 100%;
+}
+
+.summary-page-landscape .page-content {
+  min-height: auto;
+  padding: var(--space-md);
+}
+
+.calendar-image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+}
+
 /* Page Content Styles */
 .greeting {
   font-size: 1.75rem;
