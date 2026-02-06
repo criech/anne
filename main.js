@@ -230,7 +230,7 @@ const followupThanks = document.getElementById('followupThanks');
 
 let submittedEmail = '';
 
-const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyFvwDPzLXUvDKughMIm7H3uQqEDum3SAwJvNnas3G9M3RHafAtb1JsXPaXiVXPoM28/exec';
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycby10omDdIFIUSMbG4bfXkrStx3gJwT2OA0_PnRPOuCp-JZyTvnBc-Peek0yulpEG_cS/exec';
 
 // Helper function to submit data to Google Sheets
 function submitToGoogleSheets(data) {
