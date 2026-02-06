@@ -377,21 +377,55 @@ img {
 }
 
 @media (max-width: 768px) {
+  /* Restructure hero for mobile: text above image, not overlaid */
+  .hero {
+    display: flex;
+    flex-direction: column;
+  }
+
   .hero-overlay {
-    padding: var(--space-sm) var(--space-md);
+    position: relative;
+    padding: var(--space-lg) var(--space-md);
+    background: var(--pink-light);
+    text-align: center;
+    order: 1;
+  }
+
+  .hero-overlay-top {
+    padding-bottom: var(--space-md);
   }
 
   .hero-overlay-center {
     display: none;
   }
 
+  .hero picture {
+    order: 2;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 75% center; /* Show the woman on the right */
+  }
+
+  .hero-content {
+    order: 3;
+  }
+
   .hero-brand {
-    font-size: 1.75rem;
+    font-size: 2rem;
+    margin-bottom: var(--space-xs);
   }
 
   .hero-tagline {
-    font-size: 1rem;
-    max-width: 240px;
+    font-size: 1.1rem;
+    max-width: 100%;
+    margin: 0;
   }
 }
 
