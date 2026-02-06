@@ -33,22 +33,64 @@
     <div class="hero-content">
       <p class="hero-subtitle">Anne helps you stay on top of finances, health, and daily life &mdash; through weekly printed memos and simple phone calls.</p>
 
-      <div class="hooks-cards">
-        <div class="hook-card">
-          <img src="./brand_assets/shield-optimized.png" alt="" class="hook-icon">
+      <p class="selection-prompt">What would help you most? <span class="selection-hint">Pick 3-5 that matter to you.</span></p>
+
+      <div class="hooks-cards selectable" id="hookCards">
+        <div class="hook-card" data-card-id="fraud">
+          <span class="hook-icon-emoji">🛡️</span>
           <p class="hook-text">Spots suspicious payments before you lose money</p>
+          <span class="card-check">✓</span>
         </div>
-        <div class="hook-card">
-          <img src="./brand_assets/moneybag-optimized.png" alt="" class="hook-icon">
+        <div class="hook-card" data-card-id="subscriptions">
+          <span class="hook-icon-emoji">💰</span>
           <p class="hook-text">Catches when subscriptions quietly raise their prices</p>
+          <span class="card-check">✓</span>
         </div>
-        <div class="hook-card">
-          <img src="./brand_assets/calendar-optimized.png" alt="" class="hook-icon">
-          <p class="hook-text">Confirms appointments so you never miss one</p>
+        <div class="hook-card" data-card-id="bills">
+          <span class="hook-icon-emoji">📋</span>
+          <p class="hook-text">Reviews your bills and flags anything unusual</p>
+          <span class="card-check">✓</span>
+        </div>
+        <div class="hook-card" data-card-id="appointments">
+          <span class="hook-icon-emoji">📅</span>
+          <p class="hook-text">Makes sure you never miss a doctor's appointment—or forget to book one</p>
+          <span class="card-check">✓</span>
+        </div>
+        <div class="hook-card" data-card-id="insurance">
+          <span class="hook-icon-emoji">🏥</span>
+          <p class="hook-text">Deals with health insurance questions so you don't have to sit on hold</p>
+          <span class="card-check">✓</span>
+        </div>
+        <div class="hook-card" data-card-id="organize">
+          <span class="hook-icon-emoji">📝</span>
+          <p class="hook-text">Helps organize your week and keeps you on track</p>
+          <span class="card-check">✓</span>
+        </div>
+        <div class="hook-card" data-card-id="celebrate">
+          <span class="hook-icon-emoji">🎉</span>
+          <p class="hook-text">Celebrates your accomplishments each week</p>
+          <span class="card-check">✓</span>
+        </div>
+        <div class="hook-card" data-card-id="paperwork">
+          <span class="hook-icon-emoji">📄</span>
+          <p class="hook-text">Takes care of forms, filings, and tedious paperwork</p>
+          <span class="card-check">✓</span>
+        </div>
+        <div class="hook-card" data-card-id="filter">
+          <span class="hook-icon-emoji">📱</span>
+          <p class="hook-text">Filters your calls and texts so scammers can't reach you</p>
+          <span class="card-check">✓</span>
+        </div>
+        <div class="hook-card" data-card-id="family">
+          <span class="hook-icon-emoji">👨‍👩‍👧</span>
+          <p class="hook-text">Keeps family in the loop when they need to be</p>
+          <span class="card-check">✓</span>
         </div>
       </div>
 
-      <a href="#waitlist" class="cta-button">Join the Waitlist</a>
+      <p class="selection-count" id="selectionCount">0 selected</p>
+
+      <button class="cta-button" id="seeHowButton" disabled>See How Anne Helps</button>
 
       <div class="scroll-indicator" id="scrollIndicator">
         <span class="scroll-text">See more below</span>

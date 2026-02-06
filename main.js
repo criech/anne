@@ -3,6 +3,130 @@
  * Main JavaScript
  */
 
+// ============================================
+// SESSION & CARD SELECTION
+// ============================================
+
+// Generate or retrieve session ID
+function getSessionId() {
+  let sessionId = localStorage.getItem('anne_session_id');
+  if (!sessionId) {
+    sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('anne_session_id', sessionId);
+  }
+  return sessionId;
+}
+
+const sessionId = getSessionId();
+const MAX_SELECTIONS = 5;
+const MIN_SELECTIONS = 3;
+
+// Card selection logic
+const hookCards = document.getElementById('hookCards');
+
+// Randomize card order on page load to remove position bias
+function shuffleCards() {
+  if (!hookCards) return;
+
+  const cards = Array.from(hookCards.children);
+
+  // Fisher-Yates shuffle
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+
+  // Re-append in shuffled order
+  cards.forEach(card => hookCards.appendChild(card));
+}
+
+shuffleCards();
+const seeHowButton = document.getElementById('seeHowButton');
+const selectionCountEl = document.getElementById('selectionCount');
+
+let selectedCards = new Set();
+
+function updateSelectionUI() {
+  const count = selectedCards.size;
+
+  // Update count display
+  if (selectionCountEl) {
+    if (count === 0) {
+      selectionCountEl.textContent = '0 selected';
+    } else if (count < MIN_SELECTIONS) {
+      selectionCountEl.textContent = `${count} selected — pick at least ${MIN_SELECTIONS}`;
+    } else {
+      selectionCountEl.textContent = `${count} selected`;
+    }
+  }
+
+  // Update button state
+  if (seeHowButton) {
+    seeHowButton.disabled = count < MIN_SELECTIONS;
+  }
+
+  // Update card disabled states (when at max)
+  const allCards = hookCards?.querySelectorAll('.hook-card') || [];
+  allCards.forEach(card => {
+    const cardId = card.dataset.cardId;
+    if (count >= MAX_SELECTIONS && !selectedCards.has(cardId)) {
+      card.classList.add('disabled');
+    } else {
+      card.classList.remove('disabled');
+    }
+  });
+}
+
+if (hookCards) {
+  hookCards.addEventListener('click', (e) => {
+    const card = e.target.closest('.hook-card');
+    if (!card) return;
+
+    const cardId = card.dataset.cardId;
+
+    // If already selected, deselect
+    if (selectedCards.has(cardId)) {
+      selectedCards.delete(cardId);
+      card.classList.remove('selected');
+    }
+    // If not at max, select
+    else if (selectedCards.size < MAX_SELECTIONS) {
+      selectedCards.add(cardId);
+      card.classList.add('selected');
+    }
+
+    updateSelectionUI();
+  });
+}
+
+// Handle "See How Anne Helps" button
+if (seeHowButton) {
+  seeHowButton.addEventListener('click', () => {
+    if (selectedCards.size < MIN_SELECTIONS) return;
+
+    // Submit selections to Google Sheets
+    const selectionsArray = Array.from(selectedCards);
+    submitToGoogleSheets({
+      session_id: sessionId,
+      selections: selectionsArray.join(', '),
+      email: '',
+      willing_to_chat: '',
+      help_with: '',
+      form_type: 'card_selections'
+    });
+
+    // Scroll to summary section
+    const summarySection = document.getElementById('summary');
+    if (summarySection) {
+      summarySection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Update button to show it worked
+    seeHowButton.textContent = 'Great choices! ↓';
+    seeHowButton.disabled = true;
+  });
+}
+
 // Audio Player
 const audioElement = document.getElementById('audioElement');
 const playButton = document.getElementById('playButton');
@@ -103,7 +227,7 @@ const followupThanks = document.getElementById('followupThanks');
 
 let submittedEmail = '';
 
-const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxUsxVnt24aWW5_kmk7upjhhNSWhNLhsm2eSqQQLXm9V8PbIe0lal31EkAEcuowTtxF/exec';
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxZI2LFCNjsJ5uSNZ5CQRco3Ckef8QckujnamTYpXzEY1dLpAkFxNrU7U2nHB4PKNGv/exec';
 
 // Helper function to submit data to Google Sheets
 function submitToGoogleSheets(data) {
@@ -155,6 +279,8 @@ if (waitlistForm) {
 
     try {
       submitToGoogleSheets({
+        session_id: sessionId,
+        selections: Array.from(selectedCards).join(', '),
         email: submittedEmail,
         willing_to_chat: '',
         help_with: '',
@@ -203,6 +329,8 @@ if (followupSubmit) {
 
     try {
       submitToGoogleSheets({
+        session_id: sessionId,
+        selections: Array.from(selectedCards).join(', '),
         email: submittedEmail,
         willing_to_chat: willingToChat || '',
         help_with: helpWith,
@@ -247,6 +375,8 @@ if (quickFeedbackSubmit) {
 
     try {
       submitToGoogleSheets({
+        session_id: sessionId,
+        selections: Array.from(selectedCards).join(', '),
         email: '',
         willing_to_chat: '',
         help_with: feedbackText,
@@ -321,11 +451,11 @@ if (scrollIndicator) {
     }
   }, { passive: true });
 
-  // Also allow clicking the indicator to scroll down
+  // Also allow clicking the indicator to scroll down to cards section with context
   scrollIndicator.addEventListener('click', () => {
-    const nextSection = document.getElementById('summary');
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+      heroContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
       scrollIndicator.classList.add('hidden');
     }
   });

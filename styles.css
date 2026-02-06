@@ -197,33 +197,92 @@ img {
   margin: 0 auto var(--space-xl);
 }
 
-/* Hook Cards */
+/* Selection Prompt */
+.selection-prompt {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--teal-dark);
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.selection-hint {
+  font-size: 1.1rem;
+  color: var(--gray-medium);
+  font-style: italic;
+}
+
+/* Hook Cards - Selectable */
 .hooks-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-md);
-  max-width: 1100px;
-  margin: 0 auto var(--space-xl);
+  max-width: 900px;
+  margin: 0 auto var(--space-md);
+}
+
+.hooks-cards.selectable .hook-card {
+  cursor: pointer;
+  user-select: none;
 }
 
 .hook-card {
   background: #FFE8E4;
   border-radius: var(--border-radius);
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-md) var(--space-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  flex: 1 1 200px;
-  max-width: 320px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
   cursor: default;
+  border: 3px solid transparent;
+  position: relative;
 }
 
 .hook-card:hover {
-  transform: scale(1.08);
+  transform: scale(1.02);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Selected state - distinct teal color */
+.hook-card.selected {
+  background: var(--teal);
+  border-color: var(--teal-dark);
+}
+
+.hook-card.selected .hook-text {
+  color: var(--white);
+}
+
+.hook-card.selected .hook-icon-emoji {
+  filter: brightness(0) invert(1);
+}
+
+/* Checkmark */
+.card-check {
+  display: none;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 1.25rem;
+  color: var(--white);
+  font-weight: bold;
+}
+
+.hook-card.selected .card-check {
+  display: block;
+}
+
+/* Disabled state when max reached */
+.hook-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.hook-card.disabled:hover {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -242,6 +301,12 @@ img {
   object-fit: contain;
 }
 
+.hook-icon-emoji {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
 .hook-text {
   font-size: 1.05rem;
   color: var(--gray-warm);
@@ -249,15 +314,42 @@ img {
   line-height: 1.4;
 }
 
+/* Selection count */
+.selection-count {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--gray-medium);
+  margin-bottom: var(--space-md);
+}
+
+/* See How button - disabled state */
+#seeHowButton:disabled {
+  background-color: var(--gray-light);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+#seeHowButton:disabled:hover {
+  background-color: var(--gray-light);
+  transform: none;
+}
+
 @media (max-width: 768px) {
   .hooks-cards {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
   }
 
   .hook-card {
-    max-width: 100%;
     width: 100%;
+  }
+
+  .selection-prompt {
+    font-size: 1.2rem;
+  }
+
+  .selection-hint {
+    display: block;
+    margin-top: var(--space-xs);
   }
 }
 
