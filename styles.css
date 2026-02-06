@@ -709,7 +709,7 @@ img {
 
 .summary-page-landscape .page-content {
   min-height: auto;
-  padding: var(--space-lg);
+  padding: var(--space-md) var(--space-sm);
 }
 
 .calendar-section h4 {
