@@ -100,11 +100,13 @@ if (hookCards) {
 }
 
 // Handle "See How Anne Helps" button
+let hasSubmittedSelections = false;
+
 if (seeHowButton) {
   seeHowButton.addEventListener('click', () => {
     if (selectedCards.size < MIN_SELECTIONS) return;
 
-    // Submit selections to Google Sheets
+    // Submit selections to Google Sheets (will update if row exists)
     const selectionsArray = Array.from(selectedCards);
     submitToGoogleSheets({
       session_id: sessionId,
@@ -115,15 +117,16 @@ if (seeHowButton) {
       form_type: 'card_selections'
     });
 
+    hasSubmittedSelections = true;
+
     // Scroll to summary section
     const summarySection = document.getElementById('summary');
     if (summarySection) {
       summarySection.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Update button to show it worked
-    seeHowButton.textContent = 'Great choices! ↓';
-    seeHowButton.disabled = true;
+    // Update button to show it worked (but keep enabled for changes)
+    seeHowButton.textContent = 'See How Anne Helps ↓';
   });
 }
 
@@ -227,7 +230,7 @@ const followupThanks = document.getElementById('followupThanks');
 
 let submittedEmail = '';
 
-const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxZI2LFCNjsJ5uSNZ5CQRco3Ckef8QckujnamTYpXzEY1dLpAkFxNrU7U2nHB4PKNGv/exec';
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyn0iePztQcROfqFeFz9V0l3KWTFng8wA6q9x9LpeIHVtoRX1Uu0V1NEkj7pCpno2A7/exec';
 
 // Helper function to submit data to Google Sheets
 function submitToGoogleSheets(data) {
